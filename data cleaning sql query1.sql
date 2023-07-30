@@ -1,8 +1,6 @@
 Select *
 From PortfolioProject.dbo.NashvilleHousing
 
---------------------------------------------------------------------------------------------------------------------------
-
 -- Standardize Date Format
 
 
@@ -21,8 +19,6 @@ Add SaleDateConverted Date;
 Update NashvilleHousing
 SET SaleDateConverted = CONVERT(Date,SaleDate)
 
-
- --------------------------------------------------------------------------------------------------------------------------
 
 -- Populate Property Address data
 
@@ -48,11 +44,7 @@ JOIN PortfolioProject.dbo.NashvilleHousing b
 	on a.ParcelID = b.ParcelID
 	AND a.[UniqueID ] <> b.[UniqueID ]
 Where a.PropertyAddress is null
-
-
-
-
---------------------------------------------------------------------------------------------------------------------------
+	
 
 -- Breaking out Address into Individual Columns (Address, City, State)
 
@@ -129,12 +121,7 @@ SET OwnerSplitState = PARSENAME(REPLACE(OwnerAddress, ',', '.') , 1)
 
 Select *
 From PortfolioProject.dbo.NashvilleHousing
-
-
-
-
---------------------------------------------------------------------------------------------------------------------------
-
+	
 
 -- Change Y and N to Yes and No in "Sold as Vacant" field
 
@@ -160,13 +147,6 @@ SET SoldAsVacant = CASE When SoldAsVacant = 'Y' THEN 'Yes'
 	   When SoldAsVacant = 'N' THEN 'No'
 	   ELSE SoldAsVacant
 	   END
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Remove Duplicates
 
@@ -195,10 +175,6 @@ Order by PropertyAddress
 Select *
 From PortfolioProject.dbo.NashvilleHousing
 
-
-
-
----------------------------------------------------------------------------------------------------------
 
 -- Delete Unused Columns
 
